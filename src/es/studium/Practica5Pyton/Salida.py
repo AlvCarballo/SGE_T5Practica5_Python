@@ -4,14 +4,78 @@ Created on 5 feb. 2021
 
 @author: Alvca
 '''
+#Creamos las variables que vamos a usar
+from statistics import mean, mode, variance
+lista = []
+titulo = []
+caracteristicas = []
+caracteristica1 = []
+caracteristica2 = []
+caracteristica3 = []
+caracteristica4 = []
+caracteristica5 = []
+#Preguntamos qque fichero queremos abrir
 nombreFichero =input("Indique el nombre del fichero a abrir: ")
+#Controlamos posibles errores
 try:
-    fichero = open (nombreFichero,'r')
+    #Leemos el fichero y quitamos el \n
+    with open (nombreFichero,'r') as archivo:
+        lista = list(map(str.rstrip, archivo))
+#indicamos qque ocurrira si hay errores
 except OSError:
     print('No se puede abrir el archivo', nombreFichero)
+#Si no hay errores seguimos ejecutando el siguiente codigo
 else:
-    lines = []
-    for line in fichero:
-        lines.append(line)
-    fichero.close()
+    archivo.close()
     print('Hemos hacedido al archivo', nombreFichero, 'correctamente')
+    #Recorremos la lista y guardamos 2 nuevas listas
+    x=0
+    for lin in lista:
+        if x==0: #Si es la primera linea guardamos en la lista de titulos
+            #Leemos las lineas de la lista y la metemos en una nueva lista separando el " - "
+            titulo = lin.split(" - ")
+            x+=1
+        else:#Si no es la primera linea, guardamos en caracteristicax
+            #Leemos las lineas de la lista y la metemos en una nueva lista separando el " - "
+            caracteristicas = lin.split(" - ")
+            #Guardamos cada caracteristica en su lista
+            caracteristica1.append(int(caracteristicas[0]))
+            caracteristica2.append(int(caracteristicas[1]))
+            caracteristica3.append(int(caracteristicas[2]))
+            caracteristica4.append(int(caracteristicas[3]))
+            caracteristica5.append(int(caracteristicas[4]))
+    #Imprimimos el minimo, el maximo, la media, la moda y la varianza
+    print("Valores Mínimos:")
+    print(titulo[0]+": "+str(min(caracteristica1)))
+    print(titulo[1]+": "+str(min(caracteristica2)))
+    print(titulo[2]+": "+str(min(caracteristica3)))
+    print(titulo[3]+": "+str(min(caracteristica4)))
+    print(titulo[4]+": "+str(min(caracteristica5)))
+    
+    print("Valores Máximos:")
+    print(titulo[0]+": "+str(max(caracteristica1)))
+    print(titulo[1]+": "+str(max(caracteristica2)))
+    print(titulo[2]+": "+str(max(caracteristica3)))
+    print(titulo[3]+": "+str(max(caracteristica4)))
+    print(titulo[4]+": "+str(max(caracteristica5)))
+    
+    print("Valores Média:")
+    print(titulo[0]+": "+str(mean(caracteristica1)))
+    print(titulo[1]+": "+str(mean(caracteristica2)))
+    print(titulo[2]+": "+str(mean(caracteristica3)))
+    print(titulo[3]+": "+str(mean(caracteristica4)))
+    print(titulo[4]+": "+str(mean(caracteristica5)))
+    
+    print("Valores Moda:")
+    print(titulo[0]+": "+str(mode(caracteristica1)))
+    print(titulo[1]+": "+str(mode(caracteristica2)))
+    print(titulo[2]+": "+str(mode(caracteristica3)))
+    print(titulo[3]+": "+str(mode(caracteristica4)))
+    print(titulo[4]+": "+str(mode(caracteristica5)))
+    
+    print("Valores Varianza:")
+    print(titulo[0]+": "+str(variance(caracteristica1)))
+    print(titulo[1]+": "+str(variance(caracteristica2)))
+    print(titulo[2]+": "+str(variance(caracteristica3)))
+    print(titulo[3]+": "+str(variance(caracteristica4)))
+    print(titulo[4]+": "+str(variance(caracteristica5)))
